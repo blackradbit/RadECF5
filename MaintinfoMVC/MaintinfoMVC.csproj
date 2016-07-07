@@ -191,7 +191,7 @@
       <Project>{acdd5f08-10e5-4459-8887-6e37416f4481}</Project>
       <Name>MaintinfoBll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Métier\MaintinfoBo.csproj">
+    <ProjectReference Include="..\MaintinfoBo\MaintinfoBo.csproj">
       <Project>{642283c0-934e-4061-9b40-40e2cb6653bf}</Project>
       <Name>MaintinfoBo</Name>
     </ProjectReference>
