@@ -21,15 +21,34 @@ namespace MaintinfoDAL.Configuration
                 NomDepanneur = "Erwin Schrodinger",
                 SpecialiteDepanneur = spec1
             };
+            Depanneur depa2 = new Depanneur()
+            {
+                NomDepanneur = "Edward Kelley ",
+                SpecialiteDepanneur = spec2
+            };
+            Depanneur depa3 = new Depanneur()
+            {
+                NomDepanneur = "Sid Vicious",
+                SpecialiteDepanneur = spec3
+            };
             context.Depanneurs.Add(depa1);
+            context.Depanneurs.Add(depa2);
+            context.Depanneurs.Add(depa3);
 
             Article art1 = new Article()
             {
-                 NomArticle = "Accélérateur à particules",
+                 NomArticle = "Accélérateur de particules",
                  QuantiteArticle = 10,
                  SeuilMinimal = 1
             };
+            Article art2 = new Article()
+            {
+                NomArticle = "Ecran LCD",
+                QuantiteArticle = 50,
+                SeuilMinimal = 25
+            };
             context.Articles.Add(art1);
+            context.Articles.Add(art2);
         }
     }
 }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MaintinfoDAL</RootNamespace>
     <AssemblyName>MaintinfoDAL</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleDao.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="BonDeCommandeDao.cs" />
     <Compile Include="Configuration\ArticleConfiguration.cs" />
     <Compile Include="Configuration\BonDeCommandeConfiguration.cs" />
     <Compile Include="Configuration\BonSortieConfiguration.cs" />
@@ -59,6 +59,8 @@
     <Compile Include="Configuration\MaintinfoContext.cs" />
     <Compile Include="Configuration\MaintinfoInitializer.cs" />
     <Compile Include="Configuration\SpecialiteConfiguration.cs" />
+    <Compile Include="Exceptions\DaoException.cs" />
+    <Compile Include="Irepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
