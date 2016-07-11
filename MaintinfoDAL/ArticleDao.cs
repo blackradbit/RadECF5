@@ -81,7 +81,20 @@ namespace MaintinfoDAL
 
         public void Update(Article obj)
         {
-            throw new NotImplementedException();
+            using (MaintinfoContext db = new MaintinfoContext())
+            {
+                try
+                {
+                    db.Entry(obj).State = EntityState.Modified;
+
+                    int n = db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    throw new DaoException(ex.Message);
+                }
+            }
         }
     }
 }

@@ -13,18 +13,19 @@ namespace MaintinfoMVC.Controllers
     {
         // GET: Article
         GestionnaireGererArticle gestArt = new GestionnaireGererArticle();
-        public ActionResult Index(string recherche)
+        public ActionResult Index(string idArt)
         {
             ICollection<Article> lesArticles;
-            if (!string.IsNullOrEmpty(recherche))
+            int id ;
+            if (int.TryParse(idArt, out id))
             {
-                lesArticles = gestArt.ChargerLesArticles().Where(p => p.NomArticle.Contains(recherche)).ToList();
+                lesArticles = gestArt.ChargerLesArticles().Where(p => p.NomArticle.Contains(idArt)).ToList();
             }
             else
             {
                 lesArticles = gestArt.ChargerLesArticles();
             }
-            return View();
+            return View(lesArticles);
         }
 
         // GET: Article/Details/5
@@ -81,17 +82,30 @@ namespace MaintinfoMVC.Controllers
         public ActionResult Edit(int id, FormCollection collection)
         {
             Article a = null;
-            try
+            // si controles KO , réaffichage de la vue
+            if (ModelState.IsValid)
             {
-                
-                
+                try
+                {
+                    // si controles OK , modif base
+                    a = new Article()
+                    {
+                        ArticleID = Convert.ToInt32(collection["ArticleID"].ToString()),
+                        NomArticle = collection["NomArticle"].ToString(),
+                        QuantiteArticle = Convert.ToInt32(collection["QuantiteArticle"])
 
-                return RedirectToAction("Index");
+                    };
+                    gestArt.MettreAJourArticle(a);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View("Error");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            else return View();
+
         }
 
         // GET: Article/Delete/5

@@ -1,7 +1,52 @@
-﻿
+﻿@model IEnumerable<MaintinfoBo.Article>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+<div>
+    @using (Html.BeginForm("Index", "Article", FormMethod.Get))
+    {
+        @Html.TextBox("Recherche")
+        <input type="submit" value="Rechercher" />
+    }
 
+</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomArticle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantiteArticle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeuilMinimal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomArticle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantiteArticle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeuilMinimal)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id=item.ArticleID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ArticleID }) |*@
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.ArticleID })
+        </td>
+    </tr>
+}
+
+</table>
