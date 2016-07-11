@@ -48,6 +48,7 @@
     <Compile Include="CatalogueManager.cs" />
     <Compile Include="DepartementFabrication.cs" />
     <Compile Include="GestionnaireGererArticle.cs" />
+    <Compile Include="GestionnaireGererSortie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

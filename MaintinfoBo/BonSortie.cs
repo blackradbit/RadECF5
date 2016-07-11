@@ -13,6 +13,11 @@ namespace MaintinfoBo
         public int DepanneurID { get; set; }
 
         public int ArticleID { get; set; }
+
+        public BonSortie()
+        {
+
+        }
         public int BonSortieID { get { return bonSortieID; } set { bonSortieID = value; } }
         public Depanneur NomDepanneur
         {

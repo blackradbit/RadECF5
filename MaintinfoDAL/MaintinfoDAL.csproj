@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="ArticleDao.cs" />
     <Compile Include="BonDeCommandeDao.cs" />
+    <Compile Include="BonDeSortieDao.cs" />
     <Compile Include="Configuration\ArticleConfiguration.cs" />
     <Compile Include="Configuration\BonDeCommandeConfiguration.cs" />
     <Compile Include="Configuration\BonSortieConfiguration.cs" />

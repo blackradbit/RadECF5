@@ -5,16 +5,27 @@ using System.Web;
 using System.Web.Mvc;
 using MaintinfoBo;
 using MaintinfoBll;
-
+using MaintinfoBo.Exceptions;
 
 namespace MaintinfoMVC.Controllers
 {
     public class BonSortieController : Controller
     {
         // GET: BonSortie
-        public ActionResult Index()
+        GestionnaireGererSortie gestBDS = new GestionnaireGererSortie();
+        public ActionResult Index(string idBDS)
         {
-            return View();
+            ICollection<BonSortie> lesBonDeSorties;
+            int id;
+            if (int.TryParse(idBDS, out id))
+            {
+                lesBonDeSorties = gestBDS.ChargerLesBonDeSorties()/*.Where(p => p.BonSortieID = id)*/;
+            }
+            else
+            {
+                lesBonDeSorties = gestBDS.ChargerLesBonDeSorties();
+            }
+            return View(lesBonDeSorties);
         }
 
         // GET: BonSortie/Details/5
@@ -37,9 +48,18 @@ namespace MaintinfoMVC.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+
+            BonSortie bds = null;
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    bds = new BonSortie()
+                    {
+                        DateDemande = DateTime.Today,
+                        ArticleID = Convert.ToInt32(collection["ArticleID"].ToString())
+                    };
+                }
 
                 return RedirectToAction("Index");
             }

@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using MaintinfoBo;
+using System;
 
 namespace MaintinfoDAL.Configuration
 {
@@ -37,9 +38,9 @@ namespace MaintinfoDAL.Configuration
 
             Article art1 = new Article()
             {
-                 NomArticle = "Accélérateur de particules",
-                 QuantiteArticle = 10,
-                 SeuilMinimal = 1
+                NomArticle = "Accélérateur de particules",
+                QuantiteArticle = 10,
+                SeuilMinimal = 1
             };
             Article art2 = new Article()
             {
@@ -49,6 +50,16 @@ namespace MaintinfoDAL.Configuration
             };
             context.Articles.Add(art1);
             context.Articles.Add(art2);
+
+            BonSortie bs1 = new BonSortie()
+            {
+                ArticleSortie= art2,
+                DateDemande = DateTime.Today,
+                NomDepanneur= depa3,
+                Quantite = 1
+
+            };
+            context.BonSorties.Add(bs1);
         }
     }
 }

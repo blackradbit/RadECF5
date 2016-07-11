@@ -11,25 +11,25 @@ using System.Data.Entity;
 
 namespace MaintinfoDAL
 {
-    public class DepanneurDao : IRepository<Depanneur>
+    public class BonDeSortieDao : IRepository<BonSortie>
     {
-        public DepanneurDao()
+        public BonDeSortieDao()
         {
 
         }
 
-        public void Delete(Depanneur obj)
+        public void Delete(BonSortie obj)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<Depanneur> GetAll()
+        public ICollection<BonSortie> GetAll()
         {
             using (MaintinfoContext db = new MaintinfoContext())
             {
                 try
                 {
-                    return db.Depanneurs.ToList();
+                    return db.BonSorties.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -39,17 +39,17 @@ namespace MaintinfoDAL
             }
         }
 
-        public Depanneur GetById(object id)
+        public BonSortie GetById(object id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Depanneur obj)
+        public void Insert(BonSortie obj)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Depanneur obj)
+        public void Update(BonSortie obj)
         {
             throw new NotImplementedException();
         }

@@ -10,7 +10,23 @@ namespace MaintinfoBll
     public class BonSortieManager
     {
 
+        private IRepository<BonSortie> bsDao;
         public BonSortieManager() { }
+        public BonSortieManager(IRepository<BonSortie>repos)
+        {
+            bsDao = repos;
+        }
+
+
+        internal ICollection<BonSortie> RechercherLesBonDeSorties()
+        {
+            //Appel DAO
+            ICollection<BonSortie> cbds = bsDao.GetAll();
+            return cbds;
+        }
+
+
+
         public BonSortie CreerBonSortie(Article art)
         {
             return new BonSortie(art);
