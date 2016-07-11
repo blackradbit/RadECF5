@@ -11,7 +11,7 @@ namespace MaintinfoBll
     public class GestionnaireGererSortie
     {
         BonSortieManager bds;
-
+        DepanneurManager depaMgr;
         public GestionnaireGererSortie()
         {
             bds = new BonSortieManager(new BonDeSortieDao());
@@ -19,6 +19,11 @@ namespace MaintinfoBll
         public ICollection<BonSortie> ChargerLesBonDeSorties()
         {
             return bds.RechercherLesBonDeSorties();
+        }
+
+        public Depanneur RechercherDepanneur(int id)
+        {
+            return depaMgr.RechercherLesDepanneurs(id);
         }
     }
 }

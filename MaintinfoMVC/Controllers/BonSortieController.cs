@@ -50,23 +50,30 @@ namespace MaintinfoMVC.Controllers
         {
 
             BonSortie bds = null;
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
+                    //Recherche Depanneur
+                    int depId = Convert.ToInt32(collection["Depanneur.depanneurID"].ToString());
+                    Depanneur leDepa = gestBDS.
                     bds = new BonSortie()
                     {
                         DateDemande = DateTime.Today,
-                        ArticleID = Convert.ToInt32(collection["ArticleID"].ToString())
-                    };
-                }
+                        ArticleID = Convert.ToInt32(collection["ArticleID"].ToString()),
+                        DepanneurID = Convert.ToInt32(collection["DepanneurID"].ToString())
 
-                return RedirectToAction("Index");
+                    };
+
+
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
-            {
-                return View();
-            }
+            else return View();
         }
 
         // GET: BonSortie/Edit/5
