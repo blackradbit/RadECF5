@@ -11,7 +11,41 @@ namespace MaintinfoBll
     public class ArticleManager
     {
 
+        private IRepository<Article> aDao;
+
         public ArticleManager() { }
+        public ArticleManager(IRepository<Article> repos)
+        {
+            aDao = repos;
+        }
+
+        internal ICollection<Article> RechercherLesArticles()
+        {
+            //Appel DAO
+            ICollection<Article> cart = aDao.GetAll();
+            return cart;
+        }
+
+        public void CreerArticle(Article a)
+        {
+            aDao.Insert(a);
+        }
+
+        public Article RechercherUnArticle(int id)
+        {
+            return aDao.GetById(id);
+        }
+
+        public void MettreAJourArticle(Article a)
+        {
+            aDao.Update(a);
+        }
+
+        public void SupprimerArticle(int id)
+        {
+            aDao.Delete(new Article() { ArticleID = id });
+        }
+
         //public  Article SaisirArticle(string DesignationArticle)
         //{
         //    try {

@@ -26,7 +26,7 @@ namespace MaintinfoBll
             return str;
         }
 
-        public List<Depanneur> lesDepanneurs()
+        public ICollection<Depanneur> lesDepanneurs()
         {
             DepanneurDao depDao = new DepanneurDao();
             return depDao.GetAll();

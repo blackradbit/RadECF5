@@ -11,7 +11,7 @@ namespace MaintinfoDAL.Configuration
 {
     public class MaintinfoContext : DbContext
     {
-        public MaintinfoContext() : base("name = MaintinfoConnexion")
+        public MaintinfoContext() : base("name=MaintinfoConnexion")
         { }
         public DbSet<Article> Articles { get; set; }
         public DbSet<BonDeCommande> BonDeCommandes { get; set; }

@@ -45,12 +45,36 @@ namespace MaintinfoDAL
 
         public ICollection<Article> GetAll()
         {
-            throw new NotImplementedException();
+            using (MaintinfoContext db = new MaintinfoContext())
+            {
+                try
+                {
+                    return db.Articles.ToList();
+                }
+                catch (Exception ex)
+                {
+
+                    throw new DaoExceptionAfficheMessage(ex.Message);
+                }
+            }
+
         }
 
         public Article GetById(object id)
         {
-            throw new NotImplementedException();
+            using (MaintinfoContext db = new MaintinfoContext())
+            {
+                try
+                {
+                    var a = db.Articles.Find(id);
+                    return a;
+                }
+                catch (Exception ex)
+                {
+
+                    throw new DaoException(ex.Message);
+                }
+            }
         }
 
 

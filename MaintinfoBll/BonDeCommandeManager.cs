@@ -22,12 +22,12 @@ namespace MaintinfoBll
         {
             return  new BonDeCommande(art);
         }
-        public void EnregistrerBonDeCommande(BonDeCommande BdC,bool Effectue)
-        {
-            BdC.CommandeEffectue = Effectue;
-            BonDeCommandeDao BdCdao = new BonDeCommandeDao();
-            BdCdao.Insert(BdC);
-        }
+        //public void EnregistrerBonDeCommande(BonDeCommande BdC,bool Effectue)
+        //{
+        //    BdC.CommandeEffectue = Effectue;
+        //    BonDeCommandeDao BdCdao = new BonDeCommandeDao();
+        //    BdCdao.Insert(BdC);
+        //}
         //Sert pour l'aperçu avant impression
         public string MiseEnPageBonDeCommande(BonDeCommande BdC)
         {
