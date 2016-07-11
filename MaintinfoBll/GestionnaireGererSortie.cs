@@ -23,7 +23,7 @@ namespace MaintinfoBll
 
         public Depanneur RechercherDepanneur(int id)
         {
-            return depaMgr.RechercherLesDepanneurs(id);
+            return depaMgr.RechercherUnDepanneur(id);
         }
     }
 }

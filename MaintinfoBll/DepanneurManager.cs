@@ -26,5 +26,11 @@ namespace MaintinfoBll
             ICollection<Depanneur> cdepa = depDao.GetAll();
             return cdepa;
         }
+
+        public Depanneur RechercherUnDepanneur(int id)
+        {
+            return depDao.GetById(id);
+        }
+
     }
 }

@@ -42,11 +42,11 @@ namespace MaintinfoBll
             return str;
         }
 
-        public ICollection<Depanneur> lesDepanneurs()
-        {
-            DepanneurDao depDao = new DepanneurDao();
-            return depDao.GetAll();
-        }
+        //public ICollection<Depanneur> lesDepanneurs()
+        //{
+        //    DepanneurDao depDao = new DepanneurDao();
+        //    return depDao.GetAll();
+        //}
 
 
     }
