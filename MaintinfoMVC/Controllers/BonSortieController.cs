@@ -20,7 +20,7 @@ namespace MaintinfoMVC.Controllers
             int id;
             if (int.TryParse(idBDS, out id))
             {
-                lesBonDeSorties = gestBDS.ChargerLesBonDeSorties()/*.Where(p => p.BonSortieID = id)*/;
+                lesBonDeSorties = gestBDS.ChargerLesBonDeSorties().Where(p => p.BonSortieID.Equals(idBDS)).ToList();
             }
             else
             {
@@ -61,17 +61,20 @@ namespace MaintinfoMVC.Controllers
                 if (ModelState.IsValid)
                 {
                     //Recherche Depanneur
-                    int depId = Convert.ToInt32(collection["Depanneur.depanneurID"].ToString());
+                    int depId = Convert.ToInt32(collection["DepanneurID"].ToString());
                     Depanneur leDepa = gestBDS.RechercherDepanneur(depId);
+                    //Recherche Infos Article
+                    int artID = Convert.ToInt32(collection["ArticleID"].ToString());
+                    Article aArticle = gestBDS.RechercherUnArticle(artID);
                     bdsortie = new BonSortie()
                     {
                         DateDemande = DateTime.Today,
-                        ArticleID = Convert.ToInt32(collection["ArticleID"].ToString()),
-                        NomDepanneur = leDepa /*Convert.ToInt32(collection["DepanneurID"].ToString())*/
-
+                        ArticleSortie = aArticle,
+                        LeDepanneur = leDepa, /*Convert.ToInt32(collection["DepanneurID"].ToString())*/
+                        Quantite = Convert.ToInt32(collection["Quantite"].ToString())
                     };
 
-                    //gestBDS.CreerBonDeSortie();
+                    gestBDS.CreerBonDeSortie(bdsortie);
                     return RedirectToAction("Index");
                 }
                 else
@@ -79,7 +82,7 @@ namespace MaintinfoMVC.Controllers
                     // Réaffecter viewbag en possitionnant l'élémént sélecté
                     // bdsortie peut être null : à tester
                     if (bdsortie != null)
-                        ViewBag.LesDepanneurs = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur", bdsortie.NomDepanneur.DepanneurID);
+                        ViewBag.LesDepanneurs = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur", bdsortie.LeDepanneur.DepanneurID);
                     else
                         ViewBag.LesDepanneurs = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur");
                     // Conserver TempData après lecture
@@ -100,7 +103,7 @@ namespace MaintinfoMVC.Controllers
 
                 // Réaffecter viewbag en possitionnant l'élémént sélecté
                 if (bdsortie != null)
-                    ViewBag.LesFamilles = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur", bdsortie.NomDepanneur.DepanneurID);
+                    ViewBag.LesFamilles = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur", bdsortie.LeDepanneur.DepanneurID);
                 else
                     ViewBag.LesFamilles = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur");
 
@@ -126,7 +129,7 @@ namespace MaintinfoMVC.Controllers
                 TempData["lstDepanneurs"] = lstDepanneurs;
                 //Rechercher le bon de sortie
                 BonSortie bds = gestBDS.RechercherBonSortie(id);
-                ViewBag.LesDepanneurs = new SelectList(lstDepanneurs, "DepanneurID", "NomDepanneur", bds.NomDepanneur.DepanneurID);
+                ViewBag.LesDepanneurs = new SelectList(lstDepanneurs, "DepanneurID", "NomDepanneur", bds.LeDepanneur.DepanneurID);
                 return View(bds);
             }
             catch (ApplicationMaintinfoException ame)

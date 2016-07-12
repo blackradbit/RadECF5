@@ -31,15 +31,16 @@ namespace MaintinfoBll
         }
 
 
-        public BonSortie CreerBonSortie(Article art)
+        public void CreerBonSortie(BonSortie bds)
         {
-            return new BonSortie(art);
+
+            bsDao.Insert(bds);
         }
 
         public string MiseEnPageBonSortie(BonSortie BdS)
         {
             string str = "Bon de Sortie \n\n";
-            str += "Nom du dépanneur: " + BdS.NomDepanneur + "\n\n";
+            str += "Nom du dépanneur: " + BdS.LeDepanneur + "\n\n";
             str += "Date de la demande: " + BdS.DateDemande.ToShortDateString() + "\n\n";
             str += "Désignation Article: " + BdS.ArticleSortie.NomArticle.ToString() + "\n\n";
             str += "Quantité demandée: " + BdS.Quantite.ToString() + "\n\n";

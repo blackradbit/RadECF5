@@ -59,11 +59,13 @@ namespace MaintinfoBll
         //    }
 
         //}
-        //public void SortirArticle(Article Article, int Quantite)
-        //{
-        //    Article.QuantiteArticle -= Quantite;
+        public void SortirArticle(Article Article, int Quantite)
+        {
             
-        //}
+            Article.QuantiteArticle -= Quantite;
+            aDao.Update(Article);
+
+        }
         //public  void EntrerArticle(Article Article, int Quantite)
         //{ ArticleDao artDao = new ArticleDao();
         //    Article.QuantiteArticle += Quantite ;

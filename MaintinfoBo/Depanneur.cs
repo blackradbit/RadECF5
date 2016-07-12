@@ -82,6 +82,22 @@
         {
             return nomDepanneur;
         }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            var depanneur = obj as Depanneur;
+            if (depanneur != null)
+                return depanneur.DepanneurID.Equals(this.DepanneurID);
+            else
+                return false;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
         #endregion
     }
 }

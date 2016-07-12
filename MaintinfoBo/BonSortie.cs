@@ -5,7 +5,7 @@ namespace MaintinfoBo
     public class BonSortie
     {
         private int bonSortieID;
-        private Depanneur nomDepanneur;
+        private Depanneur leDepanneur;
         private Article articleSortie;
         private int quantiteSortie;
         private DateTime dateDemande;
@@ -19,16 +19,16 @@ namespace MaintinfoBo
 
         }
         public int BonSortieID { get { return bonSortieID; } set { bonSortieID = value; } }
-        public Depanneur NomDepanneur
+        public Depanneur LeDepanneur
         {
             get
             {
-                return nomDepanneur;
+                return leDepanneur;
             }
 
             set
             {
-                nomDepanneur = value;
+                leDepanneur = value;
             }
         }
 

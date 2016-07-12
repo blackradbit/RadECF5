@@ -10,21 +10,30 @@ namespace MaintinfoBll
 {
     public class GestionnaireGererSortie
     {
-        BonSortieManager bds;
+        BonSortieManager bdsMgr;
         DepanneurManager depaMgr;
+        ArticleManager artMgr;
         public GestionnaireGererSortie()
         {
-            bds = new BonSortieManager(new BonDeSortieDao());
+            bdsMgr = new BonSortieManager(new BonDeSortieDao());
             depaMgr = new DepanneurManager(new DepanneurDao());
+            artMgr = new ArticleManager(new ArticleDao());
         }
+
+        public void CreerBonDeSortie(BonSortie bds)
+        {
+            bdsMgr.CreerBonSortie(bds);
+            artMgr.SortirArticle(bds.ArticleSortie, bds.Quantite);
+        }
+
         public ICollection<BonSortie> ChargerLesBonDeSorties()
         {
-            return bds.RechercherLesBonDeSorties();
+            return bdsMgr.RechercherLesBonDeSorties();
         }
 
         public BonSortie RechercherBonSortie(int id)
         {
-            return bds.RechercherBonSortie(id);
+            return bdsMgr.RechercherBonSortie(id);
         }
         public Depanneur RechercherDepanneur(int id)
         {
@@ -34,6 +43,11 @@ namespace MaintinfoBll
         public ICollection<Depanneur> ChargerLesDepanneurs()
         {
             return depaMgr.ChargerLesDepanneurs();
+        }
+
+        public Article RechercherUnArticle(int id)
+        {
+            return artMgr.RechercherUnArticle(id);
         }
     }
 }

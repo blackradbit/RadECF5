@@ -24,7 +24,7 @@ namespace MaintinfoDAL.Configuration
                 .HasColumnType("date");
 
             //Association
-            HasRequired(bs => bs.NomDepanneur)
+            HasRequired(bs => bs.LeDepanneur)
                 .WithMany()
                 .HasForeignKey(bs => bs.DepanneurID);
             HasRequired(bs => bs.ArticleSortie)

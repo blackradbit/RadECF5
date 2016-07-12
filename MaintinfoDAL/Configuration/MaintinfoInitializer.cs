@@ -8,14 +8,21 @@ namespace MaintinfoDAL.Configuration
     {
         protected override void Seed(MaintinfoContext context)
         {
-
+            Specialite spec0 = new Specialite("Informaticien");
             Specialite spec1 = new Specialite("Physicien");
             Specialite spec2 = new Specialite("Necromancien");
             Specialite spec3 = new Specialite("Punkachien");
 
+            context.Specialites.Add(spec0);
             context.Specialites.Add(spec1);
             context.Specialites.Add(spec2);
             context.Specialites.Add(spec3);
+
+            Depanneur depa0 = new Depanneur()
+            {
+                NomDepanneur = "Alain Formaticien",
+                SpecialiteDepanneur = spec0
+            };
 
             Depanneur depa1 = new Depanneur()
             {
@@ -32,9 +39,11 @@ namespace MaintinfoDAL.Configuration
                 NomDepanneur = "Sid Vicious",
                 SpecialiteDepanneur = spec3
             };
+            context.Depanneurs.Add(depa0);
             context.Depanneurs.Add(depa1);
             context.Depanneurs.Add(depa2);
             context.Depanneurs.Add(depa3);
+
 
             Article art1 = new Article()
             {
@@ -55,7 +64,7 @@ namespace MaintinfoDAL.Configuration
             {
                 ArticleSortie= art2,
                 DateDemande = DateTime.Today,
-                NomDepanneur= depa3,
+                LeDepanneur= depa3,
                 Quantite = 1
 
             };

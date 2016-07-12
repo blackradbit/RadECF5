@@ -41,7 +41,19 @@ namespace MaintinfoDAL
 
         public Depanneur GetById(object id)
         {
-            throw new NotImplementedException();
+            using (MaintinfoContext db = new MaintinfoContext())
+            {
+                try
+                {
+                    return db.Depanneurs.Find(id);
+                    
+                }
+                catch (Exception ex)
+                {
+
+                    throw new DaoException(ex.Message);
+                }
+            }
         }
 
         public void Insert(Depanneur obj)
