@@ -43,6 +43,9 @@ namespace MaintinfoMVC.Controllers
             TempData["lstDepanneurs"] = lstDepanneurs;
             ViewBag.LesDepanneurs = new SelectList(lstDepanneurs, "DepanneurID", "NomDepanneur");
 
+            ICollection<Article> lstArticles = gestBDS.ChargerLesArticles();
+            TempData["lstArticles"] = lstArticles;
+            ViewBag.LesArticles = new SelectList(lstArticles, "ArticleID", "NomArticle");
             //BonSortieManager bs = new BonSortieManager();
             //ICollection<Depanneur> lesDepanneurs = bs.lesDepanneurs();
             //TempData["lesDepanneurs"] = lesDepanneurs;
@@ -68,13 +71,14 @@ namespace MaintinfoMVC.Controllers
                     Article aArticle = gestBDS.RechercherUnArticle(artID);
                     bdsortie = new BonSortie()
                     {
-                        DateDemande = DateTime.Today,
+                        DateDemande = Convert.ToDateTime(DateTime.Now.ToString()),
                         ArticleSortie = aArticle,
-                        LeDepanneur = leDepa, /*Convert.ToInt32(collection["DepanneurID"].ToString())*/
+                        LeDepanneur = leDepa, 
                         Quantite = Convert.ToInt32(collection["Quantite"].ToString())
                     };
 
                     gestBDS.CreerBonDeSortie(bdsortie);
+                    ViewBag.MessageConfirmation = "Bon de sortie crée ID = " + bdsortie.BonSortieID;
                     return RedirectToAction("Index");
                 }
                 else
@@ -103,9 +107,9 @@ namespace MaintinfoMVC.Controllers
 
                 // Réaffecter viewbag en possitionnant l'élémént sélecté
                 if (bdsortie != null)
-                    ViewBag.LesFamilles = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur", bdsortie.LeDepanneur.DepanneurID);
+                    ViewBag.LesDepanneurs = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur", bdsortie.LeDepanneur.DepanneurID);
                 else
-                    ViewBag.LesFamilles = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur");
+                    ViewBag.LesDepanneurs = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur");
 
                 // Conserver TempData après lecture
                 TempData.Keep("lstDepanneurs");

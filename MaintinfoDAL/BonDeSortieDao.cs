@@ -65,19 +65,27 @@ namespace MaintinfoDAL
         {
             using (MaintinfoContext db = new MaintinfoContext())
             {
-                try
+                if (!(obj.ArticleSortie.QuantiteArticle - obj.Quantite < 0))
                 {
-                    db.Entry(obj).State = EntityState.Added;
-                    db.Entry(obj.LeDepanneur).State = EntityState.Unchanged;
-                    db.Entry(obj.ArticleSortie).State = EntityState.Unchanged;
-                    int n = db.SaveChanges();
-                    
-                }
-                catch (Exception ex)
-                {
+                    try
+                    {
+                        db.Entry(obj).State = EntityState.Added;
+                        db.Entry(obj.LeDepanneur).State = EntityState.Unchanged;
+                        db.Entry(obj.ArticleSortie).State = EntityState.Unchanged;
+                        int n = db.SaveChanges();
 
-                    throw new DaoException(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw new DaoException(ex.Message);
+                    }
                 }
+                else
+                {
+                    throw new ArticleException("Pas assez d'articles en stock");
+                }
+               
             }
         }
 

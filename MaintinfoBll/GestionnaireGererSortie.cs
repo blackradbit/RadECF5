@@ -44,6 +44,10 @@ namespace MaintinfoBll
         {
             return depaMgr.ChargerLesDepanneurs();
         }
+        public ICollection<Article> ChargerLesArticles()
+        {
+            return artMgr.RechercherLesArticles();
+        }
 
         public Article RechercherUnArticle(int id)
         {
