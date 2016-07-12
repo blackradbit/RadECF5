@@ -73,7 +73,6 @@ namespace MaintinfoDAL
                         db.Entry(obj.LeDepanneur).State = EntityState.Unchanged;
                         db.Entry(obj.ArticleSortie).State = EntityState.Unchanged;
                         int n = db.SaveChanges();
-
                     }
                     catch (Exception ex)
                     {
