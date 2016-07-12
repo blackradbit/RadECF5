@@ -41,7 +41,21 @@ namespace MaintinfoDAL
 
         public BonSortie GetById(object id)
         {
-            throw new NotImplementedException();
+            using (MaintinfoContext db = new MaintinfoContext())
+            {
+                try
+                {
+                    var a = db.BonSorties.Find(id);
+
+                    db.Entry(a).Reference(q => q.NomDepanneur).Load();
+                    return a;
+                }
+                catch (Exception ex)
+                {
+
+                    throw new DaoException(ex.Message);
+                }
+            }
         }
 
         public void Insert(BonSortie obj)

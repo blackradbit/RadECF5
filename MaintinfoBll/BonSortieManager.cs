@@ -25,6 +25,10 @@ namespace MaintinfoBll
             return cbds;
         }
 
+        public BonSortie RechercherBonSortie(int id)
+        {
+            return bsDao.GetById(id);
+        }
 
 
         public BonSortie CreerBonSortie(Article art)

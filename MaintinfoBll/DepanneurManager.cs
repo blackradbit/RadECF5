@@ -20,11 +20,10 @@ namespace MaintinfoBll
             depDao = repos;
         }
 
-        internal ICollection<Depanneur> RechercherLesDepanneurs()
+        internal ICollection<Depanneur> ChargerLesDepanneurs()
         {
-            //Appel DAO
-            ICollection<Depanneur> cdepa = depDao.GetAll();
-            return cdepa;
+           
+            return depDao.GetAll();
         }
 
         public Depanneur RechercherUnDepanneur(int id)
