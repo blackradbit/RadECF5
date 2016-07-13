@@ -1,0 +1,60 @@
+﻿@model MaintinfoBo.BonSortie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bon de Sortie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DepanneurID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DepanneurID)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Dépanneur")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LeDepanneur.NomDepanneur)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleID)
+        </dd>
+        <dt>
+            @Html.DisplayName("Article")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArticleSortie.NomArticle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantite)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Date du Bon")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDemande)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BonSortieID }) |
+    @Html.ActionLink("retour a la liste", "Index")
+</p>

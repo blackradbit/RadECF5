@@ -34,12 +34,14 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; Maintinfo ASP.NET MVC Application - @DateTime.Now.ToLongDateString()</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @*// ajout alert message erreur*@
+    @Html.Raw(ViewBag.MyAlert)
 </body>
 </html>

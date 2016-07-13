@@ -51,6 +51,7 @@ namespace MaintinfoDAL
                     var a = db.BonSorties.Find(id);
 
                     db.Entry(a).Reference(q => q.LeDepanneur).Load();
+                    db.Entry(a).Reference(q => q.ArticleSortie).Load();
                     return a;
                 }
                 catch (Exception ex)

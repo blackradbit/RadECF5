@@ -26,7 +26,7 @@ namespace MaintinfoBll
         {
             artMgr.CreerArticle(art);
         }
-        public Article RechercherArticle(int id)
+        public Article RechercherArticle(object id)
         {
             return artMgr.RechercherUnArticle(id);
         }

@@ -15,14 +15,14 @@ namespace MaintinfoMVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Maintinfo Projet ECFM5";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Radouane LOTFI";
 
             return View();
         }

@@ -13,13 +13,13 @@ namespace MaintinfoMVC.Controllers
     {
         // GET: Article
         GestionnaireGererArticle gestArt = new GestionnaireGererArticle();
-        public ActionResult Index(string idArt)
+        public ActionResult Index(string recherche)
         {
             ICollection<Article> lesArticles;
-            int id ;
-            if (int.TryParse(idArt, out id))
+            
+            if (!string.IsNullOrEmpty(recherche))
             {
-                lesArticles = gestArt.ChargerLesArticles().Where(p => p.NomArticle.Contains(idArt)).ToList();
+                lesArticles = gestArt.ChargerLesArticles().Where(p => p.NomArticle.Contains(recherche)).ToList();
             }
             else
             {

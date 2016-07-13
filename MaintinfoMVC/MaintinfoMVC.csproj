@@ -177,6 +177,8 @@
     <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\BonSortie\Create.cshtml" />
+    <Content Include="Views\BonSortie\Edit.cshtml" />
+    <Content Include="Views\BonSortie\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

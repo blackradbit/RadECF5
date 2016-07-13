@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<MaintinfoBo.Article>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Liste des Articles";
 }
 
-<h2>Index</h2>
+<h2>Liste des Articles</h2>
 <div>
     @using (Html.BeginForm("Index", "Article", FormMethod.Get))
     {
@@ -14,18 +14,21 @@
 
 </div>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Créer un nouvel article", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NomArticle)
+            @Html.DisplayName("Nom de l'article")
+            @*@Html.DisplayNameFor(model => model.NomArticle)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.QuantiteArticle)
+            @Html.DisplayName("Quantité disponible")
+            @*@Html.DisplayNameFor(model => model.QuantiteArticle)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SeuilMinimal)
+            @Html.DisplayName("Seuil Minimal")
+            @*@Html.DisplayNameFor(model => model.SeuilMinimal)*@
         </th>
         <th></th>
     </tr>
@@ -42,9 +45,9 @@
             @Html.DisplayFor(modelItem => item.SeuilMinimal)
         </td>
         <td>
-            @Html.ActionLink("Modifier", "Edit", new { id=item.ArticleID }) |
+            @Html.ActionLink("Modifier", "Edit", new { id=item.ArticleID }) 
             @*@Html.ActionLink("Details", "Details", new { id=item.ArticleID }) |*@
-            @Html.ActionLink("Supprimer", "Delete", new { id=item.ArticleID })
+            @*@Html.ActionLink("Supprimer", "Delete", new { id=item.ArticleID })*@
         </td>
     </tr>
 }

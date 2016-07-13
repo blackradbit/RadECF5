@@ -32,7 +32,7 @@ namespace MaintinfoBll
             aDao.Insert(a);
         }
 
-        public Article RechercherUnArticle(int id)
+        public Article RechercherUnArticle(object id)
         {
             return aDao.GetById(id);
         }

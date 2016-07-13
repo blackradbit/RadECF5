@@ -32,7 +32,20 @@ namespace MaintinfoMVC.Controllers
         // GET: BonSortie/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ICollection<Article> lstArticles = gestBDS.ChargerLesArticles();
+            TempData["lstArticles"] = lstArticles;
+
+            //Rechercher le bon de sortie
+            BonSortie bds = gestBDS.RechercherBonSortie(id);
+            //Charger les depanneurs
+            //ICollection<Depanneur> lstDepanneurs = gestBDS.ChargerLesDepanneurs();
+            //TempData["lstDepanneurs"] = lstDepanneurs;
+            //ViewBag.LesDepanneurs = new SelectList(lstDepanneurs, "DepanneurID", "NomDepanneur", bds.LeDepanneur.DepanneurID);
+
+
+            //ViewBag.LesArticles = new SelectList(lstArticles, "ArticleID", "NomArticle", bds.ArticleID);
+
+            return View(bds);
         }
 
         // GET: BonSortie/Create
@@ -46,10 +59,7 @@ namespace MaintinfoMVC.Controllers
             ICollection<Article> lstArticles = gestBDS.ChargerLesArticles();
             TempData["lstArticles"] = lstArticles;
             ViewBag.LesArticles = new SelectList(lstArticles, "ArticleID", "NomArticle");
-            //BonSortieManager bs = new BonSortieManager();
-            //ICollection<Depanneur> lesDepanneurs = bs.lesDepanneurs();
-            //TempData["lesDepanneurs"] = lesDepanneurs;
-            //ViewBag.lesDeps = new SelectList(lesDepanneurs, "DepanneurID", "NomDepanneur");
+       
             return View();
         }
 
@@ -101,18 +111,22 @@ namespace MaintinfoMVC.Controllers
                 ViewBag.Message = ame.Message;
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<script type='text/javascript'>");
-                sb.Append("alert('" + ame.Message + "');");
+                sb.Append("alert(\"" + ame.Message + "\");");
                 sb.Append("</script>");
                 ViewBag.MyAlert = sb.ToString();
 
                 // Réaffecter viewbag en possitionnant l'élémént sélecté
                 if (bdsortie != null)
+                {
                     ViewBag.LesDepanneurs = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur", bdsortie.LeDepanneur.DepanneurID);
+                    ViewBag.LesArticles = new SelectList(((ICollection<Article>)TempData["lstArticles"]), "ArticleID", "NomArticle", bdsortie.ArticleSortie.ArticleID);
+                }
                 else
                     ViewBag.LesDepanneurs = new SelectList(((ICollection<Depanneur>)TempData["lstDepanneurs"]), "DepanneurID", "NomDepanneur");
 
-                // Conserver TempData après lecture
+                //// Conserver TempData après lecture
                 TempData.Keep("lstDepanneurs");
+                TempData.Keep("lstArticles");
                 return View(bdsortie);
             }
             catch (Exception ex)
@@ -128,12 +142,17 @@ namespace MaintinfoMVC.Controllers
         {
             try
             {
+                //Rechercher le bon de sortie
+                BonSortie bds = gestBDS.RechercherBonSortie(id);
                 //Charger les depanneurs
                 ICollection<Depanneur> lstDepanneurs = gestBDS.ChargerLesDepanneurs();
                 TempData["lstDepanneurs"] = lstDepanneurs;
-                //Rechercher le bon de sortie
-                BonSortie bds = gestBDS.RechercherBonSortie(id);
                 ViewBag.LesDepanneurs = new SelectList(lstDepanneurs, "DepanneurID", "NomDepanneur", bds.LeDepanneur.DepanneurID);
+
+                ICollection<Article> lstArticles = gestBDS.ChargerLesArticles();
+                TempData["lstArticles"] = lstArticles;
+                ViewBag.LesArticles = new SelectList(lstArticles,"ArticleID", "NomArticle", bds.ArticleID);
+
                 return View(bds);
             }
             catch (ApplicationMaintinfoException ame)
