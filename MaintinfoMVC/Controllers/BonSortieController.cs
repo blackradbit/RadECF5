@@ -59,9 +59,15 @@ namespace MaintinfoMVC.Controllers
             ICollection<Article> lstArticles = gestBDS.ChargerLesArticles();
             TempData["lstArticles"] = lstArticles;
             ViewBag.LesArticles = new SelectList(lstArticles, "ArticleID", "NomArticle");
-            if (!string.IsNullOrEmpty(artID))
+            if (string.IsNullOrEmpty(artID))
             {
-                
+                Article aArticle = gestBDS.RechercherUnArticle(Convert.ToInt32(artID));
+                BonSortie bdsortie = new BonSortie()
+                {
+                    ArticleSortie = aArticle
+                };
+                //bdsortie.ArticleID = Convert.ToInt32(artID);
+                return View(bdsortie);
             }
             return View();
         }
