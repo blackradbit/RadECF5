@@ -45,8 +45,10 @@
             @Html.DisplayFor(modelItem => item.SeuilMinimal)
         </td>
         <td>
-            @Html.ActionLink("Modifier", "Edit", new { id=item.ArticleID }) 
-            @*@Html.ActionLink("Details", "Details", new { id=item.ArticleID }) |*@
+            @Html.ActionLink("Modifier Article", "Edit", new { id=item.ArticleID }) |
+            @*linkText, actionName, controllerName, routeValues, htmlAttributes
+            <%=Html.ActionLink("Details", "Details","Product", new {id = item.ID}, null) %>*@
+            @Html.ActionLink("Sortir Article", "Create","BonSortie", new { id=item.ArticleID }, null) 
             @*@Html.ActionLink("Supprimer", "Delete", new { id=item.ArticleID })*@
         </td>
     </tr>

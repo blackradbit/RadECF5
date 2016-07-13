@@ -49,7 +49,7 @@ namespace MaintinfoMVC.Controllers
         }
 
         // GET: BonSortie/Create
-        public ActionResult Create()
+        public ActionResult Create(string artID)
         {
             
             ICollection<Depanneur> lstDepanneurs = gestBDS.ChargerLesDepanneurs();
@@ -59,7 +59,10 @@ namespace MaintinfoMVC.Controllers
             ICollection<Article> lstArticles = gestBDS.ChargerLesArticles();
             TempData["lstArticles"] = lstArticles;
             ViewBag.LesArticles = new SelectList(lstArticles, "ArticleID", "NomArticle");
-       
+            if (!string.IsNullOrEmpty(artID))
+            {
+                
+            }
             return View();
         }
 
