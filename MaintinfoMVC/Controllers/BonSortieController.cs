@@ -49,7 +49,7 @@ namespace MaintinfoMVC.Controllers
         }
 
         // GET: BonSortie/Create
-        public ActionResult Create(string artID)
+        public ActionResult Create(string id)
         {
             
             ICollection<Depanneur> lstDepanneurs = gestBDS.ChargerLesDepanneurs();
@@ -59,9 +59,9 @@ namespace MaintinfoMVC.Controllers
             ICollection<Article> lstArticles = gestBDS.ChargerLesArticles();
             TempData["lstArticles"] = lstArticles;
             ViewBag.LesArticles = new SelectList(lstArticles, "ArticleID", "NomArticle");
-            if (string.IsNullOrEmpty(artID))
+            if (string.IsNullOrEmpty(id))
             {
-                Article aArticle = gestBDS.RechercherUnArticle(Convert.ToInt32(artID));
+                Article aArticle = gestBDS.RechercherUnArticle(Convert.ToInt32(id));
                 BonSortie bdsortie = new BonSortie()
                 {
                     ArticleSortie = aArticle
