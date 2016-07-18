@@ -1,0 +1,48 @@
+﻿@model MaintinfoBo.Article
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Suppression</h2>
+
+<h3>Êtes-vous sûr de vouloir supprimer cet element ?</h3>
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomArticle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomArticle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantiteArticle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantiteArticle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeuilMinimal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeuilMinimal)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Validez suppression" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste", "Index")
+        </div>
+    }
+</div>

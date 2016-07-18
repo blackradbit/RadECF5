@@ -40,7 +40,18 @@ namespace MaintinfoDAL
 
         public void Delete(Article obj)
         {
-            throw new NotImplementedException();
+            using (MaintinfoContext db = new MaintinfoContext())
+            {
+                try
+                {
+                    db.Entry(obj).State = EntityState.Deleted;
+                    int n = db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new DaoException(ex.Message);
+                }
+            }
         }
 
         public ICollection<Article> GetAll()

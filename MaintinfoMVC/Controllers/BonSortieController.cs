@@ -59,12 +59,13 @@ namespace MaintinfoMVC.Controllers
             ICollection<Article> lstArticles = gestBDS.ChargerLesArticles();
             TempData["lstArticles"] = lstArticles;
             ViewBag.LesArticles = new SelectList(lstArticles, "ArticleID", "NomArticle");
-            if (string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(id))
             {
                 Article aArticle = gestBDS.RechercherUnArticle(Convert.ToInt32(id));
                 BonSortie bdsortie = new BonSortie()
                 {
-                    ArticleSortie = aArticle
+                    //ArticleSortie = aArticle,
+                    ArticleID = aArticle.ArticleID
                 };
                 //bdsortie.ArticleID = Convert.ToInt32(artID);
                 return View(bdsortie);
@@ -208,7 +209,7 @@ namespace MaintinfoMVC.Controllers
                 // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
-            }
+            } 
             catch
             {
                 return View();

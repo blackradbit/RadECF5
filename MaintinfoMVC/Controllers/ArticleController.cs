@@ -92,7 +92,8 @@ namespace MaintinfoMVC.Controllers
                     {
                         ArticleID = Convert.ToInt32(collection["ArticleID"].ToString()),
                         NomArticle = collection["NomArticle"].ToString(),
-                        QuantiteArticle = Convert.ToInt32(collection["QuantiteArticle"])
+                        QuantiteArticle = Convert.ToInt32(collection["QuantiteArticle"]),
+                        SeuilMinimal = Convert.ToInt32(collection["SeuilMinimal"])
 
                     };
                     gestArt.MettreAJourArticle(a);
@@ -111,7 +112,7 @@ namespace MaintinfoMVC.Controllers
         // GET: Article/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(gestArt.RechercherArticle(id));
         }
 
         // POST: Article/Delete/5
@@ -120,13 +121,19 @@ namespace MaintinfoMVC.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                gestArt.SupprimmerArticle(id);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (ApplicationMaintinfoException ate)
             {
+                ViewBag.Message = ate.Message;
                 return View();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                return View("Error");
             }
         }
     }
